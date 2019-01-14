@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.transfer</groupId>
+  <artifactId>demo</artifactId>
+  <name>Thorntail Example</name>
+  <version>1.0.0-SNAPSHOT</version>
+  <packaging>war</packaging>
+
+  <properties>
+    <version.thorntail>2.2.1.Final</version.thorntail>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <failOnMissingWebXml>false</failOnMissingWebXml>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+
+  <build>
+  <plugins>
+    <plugin>
+      <groupId>io.thorntail</groupId>
+      <artifactId>thorntail-maven-plugin</artifactId>
+      <executions>
+        <execution>
+          <id>package</id>
+        </execution>
+        <execution>
+          <id>start</id>
+        </execution>
+        <execution>
+          <id>stop</id>
+        </execution>
+      </executions>
+    </plugin>
+  </plugins>
+</build>
+
+
+<dependencies>
+    
+    <!--<dependency>-->
+      <!--<groupId>io.thorntail</groupId>-->
+      <!--<artifactId>jaxrs</artifactId>-->
+      <!--<version>${version.thorntail}</version>-->
+    <!--</dependency>-->
+  <dependency>
+    <groupId>org.jboss.spec.javax.ws.rs</groupId>
+    <artifactId>jboss-jaxrs-api_2.0_spec</artifactId>
+    <version>1.0.0.Final</version>
+  </dependency>
+    <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <version>1.4.187</version>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate.javax.persistence</groupId>
+      <artifactId>hibernate-jpa-2.1-api</artifactId>
+      <version>1.0.0.Final</version>
+    </dependency>
+    <dependency>
+      <groupId>javax.enterprise</groupId>
+      <artifactId>cdi-api</artifactId>
+      <version>1.2</version>
+    </dependency>
+    <dependency>
+      <groupId>javax.validation</groupId>
+      <artifactId>validation-api</artifactId>
+      <version>2.0.1.Final</version>
+    </dependency>
+  </dependencies>
+</project>
