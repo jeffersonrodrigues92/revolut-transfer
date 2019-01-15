@@ -1,4 +1,4 @@
-package com.transfer.demo.rest.entity;
+package com.transfer.revolut.entity;
 
 import javax.persistence.*;
 

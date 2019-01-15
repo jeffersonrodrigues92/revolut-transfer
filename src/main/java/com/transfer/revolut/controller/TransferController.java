@@ -1,7 +1,7 @@
-package com.transfer.demo.rest.controller;
+package com.transfer.revolut.controller;
 
-import com.transfer.demo.rest.service.TransferService;
-import org.h2.value.Transfer;
+import com.transfer.revolut.dto.TransferDTO;
+import com.transfer.revolut.service.TransferService;
 
 import javax.inject.Inject;
 import javax.validation.Valid;
@@ -21,9 +21,7 @@ public class TransferController {
 
 	 @POST
 	 @Produces(MediaType.APPLICATION_JSON)
-	 public Response transfer(@Valid Transfer transfer) {
-
-	 	 transferService.transfer(transfer);
+	 public Response transfer(@Valid TransferDTO transfer) {
 
 	 	 return Response.status(200).build();
 	 }

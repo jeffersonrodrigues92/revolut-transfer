@@ -1,8 +1,8 @@
-package com.transfer.demo.rest.controller;
+package com.transfer.revolut.controller;
 
 
-import com.transfer.demo.rest.dto.AccountDTO;
-import com.transfer.demo.rest.service.AccountService;
+import com.transfer.revolut.dto.AccountDTO;
+import com.transfer.revolut.service.AccountService;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
@@ -27,16 +27,8 @@ public class AccountController {
         AccountDTO accountDTO = accountService.findByIban(iban);
 
         if(Objects.isNull(accountDTO)){
-            Response.status(404).entity("Account not found").build();
+            Response.status(404).build();
         }
         return Response.status(200).entity(accountDTO).build();
     }
-
-
-    @GET
-    @Produces(MediaType.APPLICATION_FORM_URLENCODED)
-    public String findByIban() {
-        return "teste";
-    }
-
 }

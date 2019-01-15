@@ -1,17 +1,19 @@
-package com.transfer.demo.rest.dto;
+package com.transfer.revolut.entity;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-public class AccountDTO {
+@Entity
+@Table(name="account")
+public class AccountEntity {
 
-    @NotNull(message = "iban cannot be null")
+    @Id
     private String iban;
-    @NotNull(message = "ibic cannot be empty")
     private String bic;
-    @NotNull(message = "email cannot be empty")
     private String email;
-
+    @Column(name = "balance_bank")
     private Double bankBalance;
 
     public String getIban() {
@@ -30,19 +32,19 @@ public class AccountDTO {
         this.bic = bic;
     }
 
-    public Double getBankBalance() {
-        return bankBalance;
-    }
-
-    public void setBankBalance(Double bankBalance) {
-        this.bankBalance = bankBalance;
-    }
-
     public String getEmail() {
         return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Double getBankBalance() {
+        return bankBalance;
+    }
+
+    public void setBankBalance(Double bankBalance) {
+        this.bankBalance = bankBalance;
     }
 }

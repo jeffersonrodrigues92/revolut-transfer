@@ -1,4 +1,4 @@
-package com.transfer.demo.rest.dto;
+package com.transfer.revolut.dto;
 
 import java.io.Serializable;
 

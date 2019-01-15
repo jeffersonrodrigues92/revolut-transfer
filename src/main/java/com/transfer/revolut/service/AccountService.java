@@ -1,8 +1,8 @@
-package com.transfer.demo.rest.service;
+package com.transfer.revolut.service;
 
 
-import com.transfer.demo.rest.dto.AccountDTO;
-import com.transfer.demo.rest.repository.AccountRepository;
+import com.transfer.revolut.repository.AccountRepository;
+import com.transfer.revolut.dto.AccountDTO;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
