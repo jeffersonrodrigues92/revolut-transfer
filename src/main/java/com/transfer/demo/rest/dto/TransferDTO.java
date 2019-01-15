@@ -6,8 +6,8 @@ public class TransferDTO implements Serializable {
 
 
     private AccountDTO accountOrigin;
-    private AccountDTO accountDestination;
-
+    private AccountDTO accountDestionation;
+    private Double amount;
 
     public AccountDTO getAccountOrigin() {
         return accountOrigin;
@@ -17,11 +17,19 @@ public class TransferDTO implements Serializable {
         this.accountOrigin = accountOrigin;
     }
 
-    public AccountDTO getAccountDestination() {
-        return accountDestination;
+    public AccountDTO getAccountDestionation() {
+        return accountDestionation;
     }
 
-    public void setAccountDestination(AccountDTO accountDestination) {
-        this.accountDestination = accountDestination;
+    public void setAccountDestionation(AccountDTO accountDestionation) {
+        this.accountDestionation = accountDestionation;
+    }
+
+    public Double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Double amount) {
+        this.amount = amount;
     }
 }

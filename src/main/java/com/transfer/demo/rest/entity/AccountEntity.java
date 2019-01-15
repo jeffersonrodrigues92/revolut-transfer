@@ -1,5 +1,6 @@
 package com.transfer.demo.rest.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -11,12 +12,9 @@ public class AccountEntity {
     @Id
     private String iban;
     private String bic;
-    private String beneficiary;
-    private String country;
-    private String currency;
-    private String bankName;
     private String email;
-
+    @Column(name = "balance_bank")
+    private Double bankBalance;
 
     public String getIban() {
         return iban;
@@ -34,43 +32,19 @@ public class AccountEntity {
         this.bic = bic;
     }
 
-    public String getBeneficiary() {
-        return beneficiary;
-    }
-
-    public void setBeneficiary(String beneficiary) {
-        this.beneficiary = beneficiary;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public String getCurrency() {
-        return currency;
-    }
-
-    public void setCurrency(String currency) {
-        this.currency = currency;
-    }
-
-    public String getBankName() {
-        return bankName;
-    }
-
-    public void setBankName(String bankName) {
-        this.bankName = bankName;
-    }
-
     public String getEmail() {
         return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Double getBankBalance() {
+        return bankBalance;
+    }
+
+    public void setBankBalance(Double bankBalance) {
+        this.bankBalance = bankBalance;
     }
 }
