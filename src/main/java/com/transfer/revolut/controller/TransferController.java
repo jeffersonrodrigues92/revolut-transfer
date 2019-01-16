@@ -1,18 +1,21 @@
 package com.transfer.revolut.controller;
 
-import com.transfer.revolut.dto.TransferDTO;
-import com.transfer.revolut.service.TransferService;
-
 import javax.inject.Inject;
 import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import com.transfer.revolut.response.TransactionResponse;
+import com.transfer.revolut.entity.Transfer;
+import com.transfer.revolut.service.TransferService;
+
+import java.util.List;
+import java.util.Objects;
+
 /**
  * Jefferson Rodrigues
  */
-
 @Path("/transfer")
 public class TransferController {
 
@@ -21,11 +24,23 @@ public class TransferController {
 
 	 @POST
 	 @Produces(MediaType.APPLICATION_JSON)
-	 public Response transfer(@Valid TransferDTO transfer) {
-
-	 	 return Response.status(200).build();
+	 public Response transfer(@Valid Transfer transfer) {
+	     String transactionId = transferService.transfer(transfer);
+         TransactionResponse response = new TransactionResponse();
+         response.setTransactionId(transactionId);
+	 	 return Response.status(Response.Status.OK).entity(response).build();
 	 }
 
 
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/{transactionId}")
+    public Response findByTransactionId(@PathParam("transactionId") String transactionId) {
+        List<Transfer> transfers = transferService.findByTransactionId(transactionId);
+        if(Objects.isNull(transfers)){
+            throw new NotFoundException("TransactionId could not be found: "+ transactionId);
+        }
+        return Response.status(Response.Status.OK).entity(transfers).build();
+    }
 }
  

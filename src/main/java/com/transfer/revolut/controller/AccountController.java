@@ -1,8 +1,7 @@
 package com.transfer.revolut.controller;
 
 
-import com.transfer.revolut.dto.AccountDTO;
-import com.transfer.revolut.service.AccountService;
+import java.util.Objects;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
@@ -11,7 +10,9 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.Objects;
+
+import com.transfer.revolut.entity.Account;
+import com.transfer.revolut.service.AccountService;
 
 @Path("/account")
 public class AccountController {
@@ -24,11 +25,11 @@ public class AccountController {
     @Path("/{iban}")
     public Response findByIban(@PathParam("iban") String iban) {
 
-        AccountDTO accountDTO = accountService.findByIban(iban);
+        Account account = accountService.findByIban(iban);
 
-        if(Objects.isNull(accountDTO)){
-            Response.status(404).build();
+        if(Objects.isNull(account)){
+            Response.status(Response.Status.NOT_FOUND).build();
         }
-        return Response.status(200).entity(accountDTO).build();
+        return Response.status(Response.Status.OK).entity(account).build();
     }
 }
