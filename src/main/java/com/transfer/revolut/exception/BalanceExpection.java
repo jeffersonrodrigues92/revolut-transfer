@@ -6,7 +6,9 @@ import javax.ws.rs.ForbiddenException;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
-
+/**
+ * Jefferson Rodrigues
+ */
 @Provider
 public class BalanceExpection implements ExceptionMapper<ForbiddenException> {
     @Override

@@ -6,7 +6,9 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
-
+/**
+ * Jefferson Rodrigues
+ */
 @ApplicationScoped
 public class AccountRepository {
 

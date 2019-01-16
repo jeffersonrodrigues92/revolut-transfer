@@ -1,5 +1,7 @@
 package com.transfer.revolut.response;
-
+/**
+ * Jefferson Rodrigues
+ */
 public class TransactionResponse {
 
     private String transactionId;

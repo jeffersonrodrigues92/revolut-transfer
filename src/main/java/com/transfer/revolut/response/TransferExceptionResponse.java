@@ -1,5 +1,8 @@
 package com.transfer.revolut.response;
 
+/**
+ * Jefferson Rodrigues
+ */
 public class TransferExceptionResponse {
 
     private String message;

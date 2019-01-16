@@ -10,6 +10,9 @@ import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Jefferson Rodrigues
+ */
 @ApplicationScoped
 public class TransferRepository {
 
@@ -19,13 +22,13 @@ public class TransferRepository {
     public List<Transfer> findByTransactionId(String transactionId){
 
         TypedQuery<Transfer> nativeQuery =
-                entityManager.createQuery("SELECT T.* FROM TRANSFER T WHERE T.TRANSACTION_ID = :TRANSACTION_ID",Transfer.class)
-                        .setParameter("TRANSACTION_ID", transactionId);
+                entityManager.createQuery("from Transfer t where t.transactionId = :transactionId",Transfer.class)
+                        .setParameter("transactionId", transactionId);
 
         List<Transfer> transfersList= nativeQuery.getResultList();
         List<Transfer> transfers = new ArrayList<>();
 
-        for (Transfer  transferResponse: transfersList) {
+        for (Transfer transferResponse: transfersList) {
             Transfer transfer = new Transfer();
             transfer.setId(transferResponse.getId());
             transfer.setTransactionId(transferResponse.getTransactionId());

@@ -4,7 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-
+/**
+ * Jefferson Rodrigues
+ */
 @Entity
 @Table(name = "transfer")
 @JsonIgnoreProperties(ignoreUnknown = true)

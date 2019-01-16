@@ -5,7 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-
+/**
+ * Jefferson Rodrigues
+ */
 @Entity
 @Table(name="account")
 public class Account {
