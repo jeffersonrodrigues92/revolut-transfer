@@ -13,11 +13,11 @@
 
 ## HOW TO PERFORM? 
 
-1-) To run project using the .jar you shoud run command 'mvn package'.
+- To run project using the .jar you shoud run command 'mvn package'.
 
-2-) In directory /target use the .jar 'revolut-1.0.0-thorntail.jar '
+- In directory /target use the .jar 'revolut-1.0.0-thorntail.jar '
 
-3-) Command to run jar: java -jar revolut-1.0.0-thorntail.jar
+- Command to run jar: java -jar revolut-1.0.0-thorntail.jar
 
 You can use the Maven to perform application using the command below:
 
@@ -112,7 +112,7 @@ Response: 200 (application/json)
 }
 ```
 
-## Desenvolvedor
+## Developer
 Jefferson Rodrigues
 
 ## LinkedIn
