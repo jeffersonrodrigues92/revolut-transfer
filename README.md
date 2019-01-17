@@ -28,7 +28,7 @@ The server running you access the API using the URL bellow:
 Example to transfer: http://localhost:8080/
 
 
-##API SWAGGER
+## API SWAGGER
 
 Create POST request to transfer.
 
