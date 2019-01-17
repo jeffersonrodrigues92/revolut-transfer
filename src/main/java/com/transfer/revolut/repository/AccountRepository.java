@@ -4,8 +4,11 @@ import com.transfer.revolut.entity.Account;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
+import javax.ws.rs.NotFoundException;
+
 /**
  * Jefferson Rodrigues
  */
@@ -16,7 +19,13 @@ public class AccountRepository {
     private EntityManager entityManager;
 
     public Account findByIban(String iban){
-        return entityManager.find(Account.class, iban);
+        Account account = null;
+        try{
+           account = entityManager.find(Account.class, iban);
+        }catch (NoResultException e){
+            e.printStackTrace();
+        }
+        return account;
     }
 
     @Transactional

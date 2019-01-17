@@ -36,11 +36,11 @@ public class TransferController {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{transactionId}")
     public Response findByTransactionId(@PathParam("transactionId") String transactionId) {
-        List<Transfer> transfers = transferService.findByTransactionId(transactionId);
-        if(Objects.isNull(transfers)){
+        Transfer transfer = transferService.findByTransactionId(transactionId);
+        if(Objects.isNull(transfer)){
             throw new NotFoundException("TransactionId could not be found: "+ transactionId);
         }
-        return Response.status(Response.Status.OK).entity(transfers).build();
+        return Response.status(Response.Status.OK).entity(transfer).build();
     }
 }
  

@@ -1,7 +1,5 @@
 package com.transfer.revolut.service;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -9,11 +7,13 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.ForbiddenException;
 import javax.ws.rs.NotFoundException;
+import javax.ws.rs.core.Response;
 
 import com.transfer.revolut.entity.Account;
 import com.transfer.revolut.entity.Transfer;
 import com.transfer.revolut.repository.AccountRepository;
 import com.transfer.revolut.repository.TransferRepository;
+import com.transfer.revolut.response.TransferErrorResponse;
 
 @RequestScoped
 public class TransferService {
@@ -24,12 +24,12 @@ public class TransferService {
     @Inject
     private AccountRepository accountRepository;
 
-    public List<Transfer> findByTransactionId(String transactionId){
-        List<Transfer> transfers = transferRepository.findByTransactionId(transactionId);
-        if(transfers.isEmpty()) {
-            throw new NotFoundException("TransactionId could not be found: "+ transactionId);
+    public Transfer findByTransactionId(String transactionId){
+        Transfer transfer = transferRepository.findByTransactionId(transactionId);
+        if(Objects.isNull(transfer)) {
+            throw new NotFoundException(Response.status(Response.Status.NOT_FOUND).entity(new TransferErrorResponse("TransactionId could not be found: "+ transactionId)).build());
         }
-        return transfers;
+        return transfer;
     }
 
     public String transfer(Transfer transfer){
@@ -40,9 +40,7 @@ public class TransferService {
         UUID uuid = UUID.randomUUID();
         transfer.setTransactionId(uuid.toString());
 
-        accountRepository.merge(transfer.getBankAccountOrigin());
-        accountRepository.merge(transfer.getBankAccountDestination());
-        transferRepository.save(transfer);
+        confirmTransfer(transfer);
 
         return transfer.getTransactionId();
     }
@@ -51,24 +49,31 @@ public class TransferService {
 
         Account accountOrigin = accountRepository.findByIban(transfer.getBankAccountOrigin().getIban());
         if(Objects.isNull(accountOrigin)) {
-            throw new NotFoundException("Account could not be found: "+transfer.getBankAccountOrigin().getIban());
+            throw new NotFoundException(Response.status(Response.Status.NOT_FOUND).entity(new TransferErrorResponse("Account could not be found: "+transfer.getBankAccountOrigin().getIban())).build());
         }
 
         Account accountDestination = accountRepository.findByIban(transfer.getBankAccountDestination().getIban());
         if(Objects.isNull(accountDestination)) {
-            throw new NotFoundException("Account could not be found: "+transfer.getBankAccountDestination().getIban());
+            throw new NotFoundException(Response.status(Response.Status.NOT_FOUND).entity(new TransferErrorResponse("Account could not be found: "+transfer.getBankAccountDestination().getIban())).build());
         }
 
         transfer.setBankAccountOrigin(accountOrigin);
         transfer.setBankAccountDestination(accountDestination);
    }
 
+
     public void validatetransfer(Transfer transfer){
 
         if(transfer.getBankAccountOrigin().getBankBalance() < transfer.getAmount()){
-            throw new ForbiddenException("You do not have enough balance");
+            throw new ForbiddenException(Response.status(Response.Status.FORBIDDEN).entity(new TransferErrorResponse("You do not have enough balance")).build());
         }
         transfer.getBankAccountOrigin().setBankBalance(transfer.getBankAccountOrigin().getBankBalance() - transfer.getAmount());
         transfer.getBankAccountDestination().setBankBalance(transfer.getBankAccountDestination().getBankBalance() + transfer.getAmount());
+    }
+
+    private void confirmTransfer(Transfer transfer) {
+        accountRepository.merge(transfer.getBankAccountOrigin());
+        accountRepository.merge(transfer.getBankAccountDestination());
+        transferRepository.save(transfer);
     }
 }
