@@ -84,7 +84,7 @@ Response: 200 (application/json)
 }
 ```
 
-Create GET request to find informations about account using iban account.
+Create GET request to find informations about account using iban.
 
 Request:
 
