@@ -19,11 +19,11 @@
 
 - Command to run jar: java -jar revolut-1.0.0-thorntail.jar
 
-You can use the Maven to perform application using the command below:
+You can use the Maven to perform the application using the command below:
 
-Command: mvn thorntail:run 
+Command: 'mvn thorntail:run'
 
-The server running you access the API using the URL bellow:
+The server running you can to access the API using the URL below:
 
 Example to transfer: http://localhost:8080/
 
